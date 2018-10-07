@@ -1,8 +1,9 @@
 <div class="container">
-  <h1>Sign Up</h1>
+  <h1>Edit Profile</h1>
 </div>
+
 <div class="container">
- <div class="example-container">
+<div class="example-container">
   <mat-form-field>
     <input matInput
     placeholder="Email"
@@ -80,13 +81,13 @@
   </mat-form-field>
 
 <mat-form-field>
-  <mat-select placeholder="userType" name="user_type" [(ngModel)]="user_type">
+  <mat-select placeholder="userType" [(ngModel)]="user_type">
     <mat-option *ngFor="let item of usertype" [value]="item">{{item}}</mat-option>
   </mat-select>
 </mat-form-field>
 
 <mat-form-field>
-  <mat-select placeholder="City" [(ngModel)]="city">
+  <mat-select placeholder="City" [(ngModel)]="city" >
     <mat-option *ngFor="let item of cities" [value]="item">{{item}}</mat-option>
   </mat-select>
 </mat-form-field>
@@ -96,7 +97,7 @@
 </mat-form-field>
 
 <div class="button-row">
-<button mat-raised-button color="primary" (click)="onAdd()">Sign up</button>
+<button mat-raised-button color="warn" (click)="onSave()">Save</button>
 </div>
 
 </div>

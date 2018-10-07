@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { MatTableDataSource } from '@angular/material';
+
 import { user } from '../classes/user';
 import { UserserviceService } from '../services/userservice.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -10,23 +11,47 @@ import { UserserviceService } from '../services/userservice.service';
 })
 export class SignupComponent implements OnInit {
   userarr:user[];
-  dataSource = new MatTableDataSource();
-  displaycolumns:string[]=['email_id','password','user_name','mobile_no','user_type','city','address'];
 
+  flag:boolean=true;
+usertype:string[]=[
+  'Admin',
+  'Wholsaller',
+  'Retailer'
+];
+cities:string[]=[
+  'Ahmedabad',
+  'Ghandhinagar',
+  'Baroda',
+  'Surat',
+  'Rajkot',
+  'Mumbai',
+  'Delhi'
+];
+email_id:string;
+password:string;
+user_name:string;
+mobile_no:string;
+user_type:string;
+address:string;
+city:string;
 
-  constructor(private _data:UserserviceService) { }
+  constructor(private _data:UserserviceService,
+              private _route:Router) { }
 
-  applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+  onAdd(){
+    alert("click");
+    console.log(this.city);
+    this._data.addUser(new user(this.email_id,this.password,this.user_name,this.mobile_no,this.user_type,this.city,this.address)).subscribe(
+      (data:any)=>{
+        console.log(data);
+        this.userarr.push(new user(this.email_id,this.password,this.user_name,this.mobile_no,this.user_type,this.city,this.address));
+        alert('added');
+        console.log(this.email_id);
+      }
+    );
   }
 
   ngOnInit() {
-    this._data.getAllUser().subscribe(
-      (data:user[])=> {
-      this.userarr=data;
-      this.dataSource.data=this.userarr;
-    }
-    );
   }
 
 }

@@ -5,20 +5,28 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { routing } from './app.routing';
 
 import { MatInputModule,
          MatIconModule,
-         MatTableModule } from '@angular/material';
+         MatTableModule,
+        MatSelectModule,
+        MatPaginatorModule,
+        MatCheckboxModule} from '@angular/material';
 
-import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { SignValidationsComponent } from './sign-validations/sign-validations.component';
 import { SignupComponent } from './signup/signup.component';
+import { EditprofileComponent } from './editprofile/editprofile.component';
+import { UsertableComponent } from './usertable/usertable.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SignValidationsComponent,
-    SignupComponent
+    SignupComponent,
+    EditprofileComponent,
+    UsertableComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +36,11 @@ import { SignupComponent } from './signup/signup.component';
     MatInputModule,
     MatIconModule,
     HttpClientModule,
-    MatTableModule
+    MatTableModule,
+    MatSelectModule,
+    MatPaginatorModule,
+    routing,
+    MatCheckboxModule
     ],
   providers: [],
   bootstrap: [AppComponent]

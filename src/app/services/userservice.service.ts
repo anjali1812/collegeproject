@@ -9,6 +9,7 @@ export class UserserviceService {
 
   private userInfo:string="http://localhost:3000/user/";
   private sign:string="http://localhost:3000/signup/";
+  private deleteMultipleUser:string="http://localhost:3000/deleteMultipleUsers/";
 
   constructor(private _http:HttpClient) { }
 
@@ -16,15 +17,25 @@ export class UserserviceService {
     return this._http.get(this.userInfo);
   }
 
+  getUserById(email_id:string){
+    return this._http.get(this.sign+email_id);
+  }
+
   addUser(item:user){
     let body=JSON.stringify(item);
-    let head=new HttpHeaders().set('Content-Type','application/json');
-    return this._http.post(this.sign,body,{headers:head});
+    let head1=new HttpHeaders().set('Content-Type','application/json');
+    return this._http.post(this.sign,body,{headers:head1});
   }
 
   deleteUser(item:user){
     let head=new HttpHeaders().set('Content-Type','application/json');
     return this._http.delete(this.userInfo+item.email_id,{headers:head});
+  }
+
+  deleteMultipleUsers(item:user[]){
+    let body=JSON.stringify(item);
+    let head=new HttpHeaders().set('Content-Type','application/json');
+    return this._http.post(this.deleteMultipleUser,body,{headers:head});
   }
 
   updateUser(item:user){
